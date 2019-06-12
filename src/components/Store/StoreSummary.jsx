@@ -94,7 +94,7 @@ class ProjectSummary extends Component {
         
         return (
 
-            <div class="card mynewcard">
+            <div class="card mynewcard medium">
                 <div class="card-image waves-effect waves-block waves-light">
                     <img class="activator" src="https://d28fujbigzf56k.cloudfront.net/static/img/store-logo.png" />
                 </div>

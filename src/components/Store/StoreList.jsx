@@ -1,57 +1,53 @@
-import React from 'react'
+import React, { Component } from 'react'
 import StoreSummary from './StoreSummary';
-
+import firebase from 'firebase';
+import firebaseConfig from '../config'
 
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-const StoreList = (props) => {
-  
-  const user = props.user;
-  
-  let stores = [{
-    "name": "Test Store",
-    "category": "Food",
-    "plans": [
-        1
-    ],
-    "categories_available": [
-        "snacks"
-    ],
-    "store_logo_url": "https://d28fujbigzf56k.cloudfront.net/static/img/store-logo.png",
-    "place": {
-        "id": 1,
-        "street_address": "BTW, M2K Road, Mangalam Place, Sector 3, Rohini",
-        "city": "Delhi",
-        "state": "Delhi",
-        "latitude": 28.7003629,
-        "longitude": 77.1174550000001,
-        "cover_pic_url": "https://d28fujbigzf56k.cloudfront.net/static/img/placelogo.png"
-    },
-    "hcash_limit": 10.0,
-    "hcash_percentage": 3.0,
-    "is_verified": true,
-    "active": true
-  }]
-  
-  return (
-    <div className="store-list section">
-      {stores && stores.map(store =>
-        
-          <StoreSummary store={store} />
-        
-      )
+class StoreList extends Component {
 
-      }
+  constructor() {
+    super()
+    this.app = firebase.initializeApp(firebaseConfig)
+    this.database = this.app.database().ref().child('pgs').orderByKey();
+    this.state={
+      pg : {},
+      myarray=[],
+    }
+  }
+  componentDidMount(){
+    this.database.on('value',snap=>{
+      this.setState({
+        pg : snap.val()
+      })
+     this.state.myarray[0]=pg.pg1;
+     this.state.myarray[1]=pg.pg2;
+     this.state.myarray[2]=pg.pg3;
 
-    </div>
-  )
-}
-const mapStateToProps = (state) => {
-  console.log(state);
-  return {
-    user : state.user
+    })
+  }
+  
+  render() {
+    return (
+      <div className="store-list section">
+        {this.state.myarray && this.state.myarray.map(pg => {
+         
+          return <StoreSummary pg={pg} />
+
+        }
+
+
+
+        )
+
+        }
+
+      </div>
+    )
   }
 
 }
-export default connect(mapStateToProps)(StoreList)
+
+export default StoreList
