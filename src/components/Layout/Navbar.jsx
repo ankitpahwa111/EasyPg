@@ -14,17 +14,11 @@ const Navbar = (props) => {
     return (
         <nav className="nav-wrapper grey darken-1">
             <div className="container">
-                <Link to='/' className='brand-logo'>Halanx Stores</Link>
+                <Link to='/' className='brand-logo'>Easy PG</Link>
                 {Links}
             </div>
         </nav>
     )
 }
-const mapStateToProps = (state) => {
-    console.log(state)
-    return {
-        authError: state.authError,
-        user : state.user
-    }
-}
-export default connect(mapStateToProps)(Navbar);
+
+export default (Navbar);
