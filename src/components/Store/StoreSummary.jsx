@@ -9,7 +9,7 @@ class StoreSummary extends Component {
 
         }
 
-        
+
 
     }
 
@@ -31,7 +31,7 @@ class StoreSummary extends Component {
                             <li>Capacity : {this.props.pg.capacity}</li>
                         </div>
                         <div class="card-action">
-                            <Link to={'/pg?name=' + this.props.pg.name}>More</Link>
+                            <Link to={'/'}>More</Link>
                         </div>
                     </div>
                 </div>
