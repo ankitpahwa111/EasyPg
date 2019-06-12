@@ -1,6 +1,6 @@
 import React from 'react';
 import {NavLink } from 'react-router-dom';
-import {signout} from '../../Store/authactions';
+
 import {connect} from 'react-redux'
 const SignedInLinks = (props)=>{
     //console.log('here')
@@ -19,10 +19,6 @@ const SignedInLinks = (props)=>{
         
     )
 }
-const mapDispatchToProps=(dispatch)=>{
-    return {
-        signOut : ()=> dispatch(signout())
-    }
-}
 
-export default connect(null , mapDispatchToProps)(SignedInLinks)
+
+export default (SignedInLinks)
